@@ -19,15 +19,15 @@ A manifest is used to check the policy whether it is running or not.
 
 # Descriptions of Gatekeeper Policy Kinds
 # 1. AllowedUsers: 
-Controls the user and group IDs of the container and some volumes. Corresponds to the runAsUser, runAsGroup, supplementalGroups, and fsGroup fields in a Policy.
+Controls the user and group IDs of the container and some volumes. Corresponds to the runAsUser, runAsGroup, supplementalGroups, and fsGroup fields.
 # 2. PAllowPrivilegeEscalationContainer:
-Controls restricting escalation to root privileges. Corresponds to the allowPrivilegeEscalation field in a Policy.
+Controls restricting escalation to root privileges. Corresponds to the allowPrivilegeEscalation field.
 # 3. AppArmor:
-Configures an allow-list of AppArmor profiles for use by containers. This corresponds to specific annotations applied to a Policy.
+Configures an allow-list of AppArmor profiles for use by containers. 
 # 4. AutomountServiceAccountTokenPod:
 Controls the ability of any Pod to enable automountServiceAccountToken.
 # 5. BlockEndpointEditDefaultRole:
-This ConstraintTemplate forbids the system:aggregate-to-edit ClusterRole from granting permission to create/patch/update Endpoints. \
+This ConstraintTemplate forbids the system:aggregate-to-edit ClusterRole from granting permission to create/patch/update Endpoints. 
 # 6. BlockLoadBalancer:
 Disallows all Services with type LoadBalancer.
 # 7. BlockNodePort:
@@ -37,7 +37,7 @@ Blocks updating the service account on resources that abstract over Pods.
 # 9. BlockWildcardIngress:
 Users should not be able to create Ingresses with a blank or wildcard (*) hostname since that would enable them to intercept traffic for other services in the cluster, even if they don't have access to those services.
 # 10. Capabilities:
-Controls Linux capabilities on containers. Corresponds to the allowedCapabilities and requiredDropCapabilities fields in a Policy.
+Controls Linux capabilities on containers. Corresponds to the allowedCapabilities and requiredDropCapabilities fields.
 # 11. ContainerLimits:
 Requires containers to have memory and CPU limits set and constrains limits to be within the specified maximum values. 
 # 12. ContainerEphemeralStorageLimit:
@@ -53,10 +53,50 @@ Requires container images to have an image tag different from the ones in the sp
 # 17. ExternalIPs:
 Restricts Service externalIPs to an allowed list of IP addresses.
 # 18. FlexVolumes:
-Controls the allowlist of FlexVolume drivers. Corresponds to the allowedFlexVolumes field in Policy. 
+Controls the allowlist of FlexVolume drivers. Corresponds to the allowedFlexVolumes field. 
 # 19. FSGroup:
-Controls allocating an FSGroup that owns the Pod's volumes. Corresponds to the fsGroup field in a Policy.
+Controls allocating an FSGroup that owns the Pod's volumes. Corresponds to the fsGroup.
 # 20. HorizontalPodAutoscaler:
 Disallow the following scenarios when deploying HorizontalPodAutoscalers 1. Deployment of HorizontalPodAutoscalers with .spec.minReplicas or .spec.maxReplicas outside the ranges defined in the constraint 2. Deployment of HorizontalPodAutoscalers where the difference between .spec.minReplicas and .spec.maxReplicas is less than the configured minimumReplicaSpread 3. Deployment of HorizontalPodAutoscalers that do not reference a valid scaleTargetRef (e.g. Deployment, ReplicationController, ReplicaSet, StatefulSet).
 # 21. HostFilesystem:
-Controls usage of the host filesystem. Corresponds to the allowedHostPaths field in a PodSecurityPolicy.
+Controls usage of the host filesystem. Corresponds to the allowedHostPaths field.
+# 22. HostNamespace:
+Disallows sharing of host PID and IPC namespaces by pod containers. Corresponds to the hostPID and hostIPC fields.
+# 23. HostNetworkingPorts:
+Controls usage of host network namespace by pod containers. Specific ports must be specified. Corresponds to the hostNetwork and hostPorts fields. 
+# 24. HttpsOnly:
+Requires Ingress resources to be HTTPS only. Ingress resources must include the kubernetes.io/ingress.allow-http annotation, set to false. By default a valid TLS {} configuration is required, this can be made optional by setting the tlsOptional parameter to true.
+# 25. ImageDigests:
+Requires container images to contain a digest.
+# 26 K8sAllowedRepos;
+Requires container images to begin with a string from the specified list.
+# 27 PodDisruptionBudget:
+Disallow the following scenarios when deploying PodDisruptionBudgets or resources that implement the replica subresource (e.g. Deployment, ReplicationController, ReplicaSet, StatefulSet): 1. Deployment of PodDisruptionBudgets with .spec.maxUnavailable == 0 2. Deployment of PodDisruptionBudgets with .spec.minAvailable == .spec.replicas of the resource with replica subresource This will prevent PodDisruptionBudgets from blocking voluntary disruptions such as node draining. 
+# 28 PrivilegedContainer:
+Controls the ability of any container to enable privileged mode. Corresponds to the privileged field. 
+# 29 ProcMount:
+Controls the allowed procMount types for the container. Corresponds to the allowedProcMountTypes field.
+# 30 ReadOnlyRootFilesystem:
+Requires the use of a read-only root file system by pod containers. Corresponds to the readOnlyRootFilesystem field.
+# 31 ReplicaLimits:
+Requires that objects with the field spec.replicas (Deployments, ReplicaSets, etc.) specify a number of replicas within defined ranges.
+# 32 RequiredAnnotations:
+Requires resources to contain specified annotations, with values matching provided regular expressions.
+# 33 RequiredLabels;
+Requires resources to contain specified labels, with values matching provided regular expressions.
+# 34 RequiredProbes;
+Requires Pods to have readiness and/or liveness probes.
+# 35 Seccomp:
+Controls the seccomp profile used by containers. Corresponds to the seccomp.security.alpha.kubernetes.io/allowedProfileNames annotation.
+# 36 SELinuxV2:
+Defines an allow-list of seLinuxOptions configurations for pod containers. Corresponds to a PodSecurityPolicy requiring SELinux configs.
+# 37 StorageClass:
+Requires storage classes to be specified when used.
+# 38 UniqueIngressHost:
+Requires all Ingress rule hosts to be unique. Does not handle hostname wildcards:
+# 39 UniqueServiceSelector:
+Requires Services to have unique selectors within a namespace. Selectors are considered the same if they have identical keys and values. Selectors may share a key/value pair so long as there is at least one distinct key/value pair between them. 
+# 40 VerifyDeprecatedAPI:
+Verifies deprecated Kubernetes APIs to ensure all the API versions are up to date. This template does not apply to audit as audit looks at the resources which are already present in the cluster with non-deprecated API versions.
+# 41 VolumeTypes:
+Restricts mountable volume types to those specified by the user. Corresponds to the volumes field.
