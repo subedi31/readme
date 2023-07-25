@@ -18,7 +18,7 @@ A manifest is used to check the policy whether it is running or not.
 # 4. Test the Constraints to be effective using the test-manifest examples.
 
 # Descriptions of Gatekeeper Policy Kinds
-# 1. AllowedUsers: 
+## 1. AllowedUsers: 
 Controls the user and group IDs of the container and some volumes. Corresponds to the runAsUser, runAsGroup, supplementalGroups, and fsGroup fields.
 # 2. AllowPrivilegeEscalationContainer:
 Controls restricting escalation to root privileges. Corresponds to the allowPrivilegeEscalation field.
