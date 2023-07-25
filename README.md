@@ -1,22 +1,3 @@
-#### Descriptions of Kubernetes Gatekeeper Policies Kinds ######
-
-# Note: Kubernetes Gatekeeper Policies Kinds can be found in the respective YML files of Templates and Constraints.
-# Definitions:
-# 1. Templates:
-It define a way to validate some set of Kubernetes objects in Gatekeeper’s Kubernetes admission controller. They are made of two main elements:
-1. Rego code that defines a policy violation
-2. The schema of the accompanying Constraint object, which represents an instantiation of a ConstraintTemplate
-# 2. Constraints:
-It is a declaration of requirements that a system needs to meet. In another word, Constraints are used to inform Gatekeeper that the admin wants a ConstraintTemplate to be enforced, and how.
-# 3. Test-Manifests:
-A manifest is used to check the policy whether it is running or not.
-
-# Deployment Steps:
-# 1. Install OPA Gatekeeper Agent on the EKS.
-# 2. Deploy the Gatekeeper templates on the EKS.
-# 3. Deploy the Gatekeeper policy constraints on the EKS. 
-# 4. Test the Constraints to be effective using the test-manifest examples.
-
 # Descriptions of Gatekeeper Policy 
 ## 1. AllowedUsers: 
 Controls the user and group IDs of the container and some volumes. Corresponds to the runAsUser, runAsGroup, supplementalGroups, and fsGroup fields.
