@@ -1,6 +1,6 @@
 # Descriptions of Gatekeeper Policy 
 ## 1. AllowedUsers: 
-The constraint file alloweduser_constraints.yaml controls the user and group IDs of the container and some volumes. User may change the parameter in alloweduser_constraints.yaml file as per their requirements.
+The constraint file alloweduser_constraints.yaml controls the user and group IDs of the container and some volumes. User may change the parameter in alloweduser_constraints.yaml file as per their requirements. For more information, see https://kubernetes.io/docs/concepts/policy/pod-security-policy/#users-and-groups 
 ## 2. AllowPrivilegeEscalationContainer:
 The constraint allowprivilegeescalationContainer_constraints.yml file Controls restricting escalation to root privileges. Corresponds to the allowPrivilegeEscalation field. 
 ## 3. AppArmor:
