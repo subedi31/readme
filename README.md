@@ -80,4 +80,4 @@ The constraint file uniqueserviceselector_constraints.yaml requires Services to 
 ## 40 VerifyDeprecatedAPI:
 The constraint file verifydeprecatedapi_constraints.yaml verifies deprecated Kubernetes APIs to ensure all the API versions are up to date. This template does not apply to audit as audit looks at the resources which are already present in the cluster with non-deprecated API versions. User may change the parameter as per the their requirements.
 ## 41 VolumeTypes:
-The constraint file volumetypes_constraints.yaml restricts mountable volume types to those specified by the user. Corresponds to the volumes field. User may change the parameter as per the their requirements.
+The constraint file volumetypes_constraints.yaml restricts mountable volume types to those specified by the user. Corresponds to the volumes field in a Pod. User may change the parameter in volumetypes_constraints.yaml as per the their requirements.
