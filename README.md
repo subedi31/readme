@@ -40,7 +40,7 @@ The constraint file fsgroup_constraints.yaml controls allocating an FSGroup that
 ## 20. HorizontalPodAutoscaler:
 The constraint file horizontalpodautoscaler_constraints.yaml disallow the following scenarios when deploying HorizontalPodAutoscalers 1. Deployment of HorizontalPodAutoscalers with .spec.minReplicas or .spec.maxReplicas outside the ranges defined in the constraint 2. Deployment of HorizontalPodAutoscalers where the difference between .spec.minReplicas and .spec.maxReplicas is less than the configured minimumReplicaSpread 3. Deployment of HorizontalPodAutoscalers that do not reference a valid scaleTargetRef (e.g. Deployment, ReplicationController, ReplicaSet, StatefulSet).User may change the parameter in horizontalpodautoscaler_constraints.yaml file as per the their requirements.
 ## 21. HostFilesystem:
-The constraint file hostfilesystem_constraints.yaml controls usage of the host filesystem. Corresponds to the allowedHostPaths field.User may change the parameter in hostfilesystem_constraints.yaml file as per their requirements.
+The constraint file hostfilesystem_constraints.yaml controls usage of the host filesystem. Corresponds to the allowedHostPaths field. User may change the parameter in hostfilesystem_constraints.yaml file as per their requirements.
 ## 22. HostNamespace:
 The constraint file hostnamespace_constraints.yaml disallows sharing of host PID and IPC namespaces by pod containers. Corresponds to the hostPID and hostIPC field.
 ## 23. HostNetworkingPorts:
@@ -54,11 +54,11 @@ The constraint file k8sallowedrepos_constraints.yaml requires container images t
 ## 27 PodDisruptionBudget:
 The constraint file poddisruptionbudget_constraints.yaml disallow the following scenarios when deploying PodDisruptionBudgets or resources that implement the replica subresource (e.g. Deployment, ReplicationController, ReplicaSet, StatefulSet): 1. Deployment of PodDisruptionBudgets with .spec.maxUnavailable == 0 2. Deployment of PodDisruptionBudgets with .spec.minAvailable == .spec.replicas of the resource with replica subresource This will prevent PodDisruptionBudgets from blocking voluntary disruptions such as node draining. User may change the parameter in a poddisruptionbudget_constraints.yaml file as per their requirements.
 ## 28 PrivilegedContainer:
-The constraint file privilegedcontainer_constraints.yaml controls the ability of any container to enable privileged mode. Corresponds to the privileged field in a Pod. 
+The constraint file privilegedcontainer_constraints.yaml controls the ability of any container to enable privileged mode. Corresponds to the privileged field. 
 ## 29 ProcMount:
-The constraint file procmount_constraints.yaml controls the allowed procMount types for the container. Corresponds to the allowedProcMountTypes field in a Pod. User may change the parameter in a procmount_constraints.yaml file as per their requirements.
+The constraint file procmount_constraints.yaml controls the allowed procMount types for the container. Corresponds to the allowedProcMountTypes. User may change the parameter in a procmount_constraints.yaml file as per their requirements.
 ## 30 ReadOnlyRootFilesystem:
-The constraint file readonlyrootfilesystem_constraints.yaml requires the use of a read-only root file system by pod containers. Corresponds to the readOnlyRootFilesystem field in a Pod.
+The constraint file readonlyrootfilesystem_constraints.yaml requires the use of a read-only root file system by pod containers. Corresponds to the readOnlyRootFilesystem field.
 ## 31 ReplicaLimits:
  The constraint file replicalimits_constraints.yaml requires that objects with the field spec.replicas (Deployments, ReplicaSets, etc.) specify a number of replicas within defined ranges. User may change the parameter in replicalimits_constraints.yaml file as per their requirements.
 ## 32 RequiredAnnotations:
@@ -68,7 +68,7 @@ The constraint file requiredlabels_constraints.yaml requires resources to contai
 ## 34 RequiredProbes;
 The constraint file required_constraints.yaml requires Pods to have readiness and/or liveness probes. User may change the parameter in required_constraints.yaml file as per their requirements.
 ## 35 Seccomp:
-The constraint file seccomp_constraints.yaml controls the seccomp profile used by containers. Corresponds to the seccomp.security.alpha.kubernetes.io/allowedProfileNames annotation on a Pod. User may change the parameter in seccomp_constraints.yaml file as per their requirements. 
+The constraint file seccomp_constraints.yaml controls the seccomp profile used by containers. Corresponds to the seccomp.security.alpha.kubernetes.io/allowedProfileNames annotation. User may change the parameter in seccomp_constraints.yaml file as per their requirements. 
 ## 36 SELinuxV2:
 The constraint file selinuxv2_constraints.yaml defines an allow-list of seLinuxOptions configurations for pod containers. User may change the parameter as per the their requirements.
 ## 37 StorageClass:
@@ -80,4 +80,4 @@ The constraint file uniqueserviceselector_constraints.yaml requires Services to 
 ## 40 VerifyDeprecatedAPI:
 The constraint file verifydeprecatedapi_constraints.yaml verifies deprecated Kubernetes APIs to ensure all the API versions are up to date. This template does not apply to audit as audit looks at the resources which are already present in the cluster with non-deprecated API versions. User may change the parameter in verifydeprecatedapi_constraints.yaml as per their requirements.
 ## 41 VolumeTypes:
-The constraint file volumetypes_constraints.yaml restricts mountable volume types to those specified by the user. Corresponds to the volumes field in a Pod. User may change the parameter in volumetypes_constraints.yaml as per their requirements.
+The constraint file volumetypes_constraints.yaml restricts mountable volume types to those specified by the user. Corresponds to the volumes field. User may change the parameter in volumetypes_constraints.yaml as per their requirements.
